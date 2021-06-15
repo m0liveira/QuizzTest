@@ -1,0 +1,14 @@
+:root{
+    --darkTheme: rgb(60, 60, 60);
+    --lighterDarkTheme: rgb(70, 70, 70);
+    --staatliches: Staatliches, cursive;
+    --montserrat: Montserrat, sans-serif;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: var(--lighterDarkTheme);
+}
