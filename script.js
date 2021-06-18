@@ -25,9 +25,11 @@ var leaderboard2 = document.getElementById("leaderboard2"); // [btn] aceder a le
 var restart = document.getElementById("restart"); // [btn] jogar o quiz (restart)
 var setName = document.getElementById("setName"); // [btn] so confirma o player name 
 var score = document.getElementById("score"); // mostrar pontos do player
+
 // timer
 var timerBody = document.getElementById("timer"); // corpo do timer
 var timeLabel = document.getElementById("time"); // timer label
+
 // leaderboard
 var firstName = document.getElementById("first-Name"); // nome do primeiro jogador na leaderboard
 var firstScore = document.getElementById("first-Score"); // score do primeiro jogador na leaderboard
@@ -158,14 +160,17 @@ function updateLeaderboard() {
 
 // dar load do storage e passar as strings para objetos e guardar no arr - playerList
 function loadStorage() {
-    const list = JSON.parse(localStorage.users); // converte de string para json
+    if (localStorage.getItem("users") === null) {
+        // nao faz nada
+    } else {
+        const list = JSON.parse(localStorage.users); // converte de string para json
 
-    console.log("Dom fully loaded..."); // informaçao sobre o ready state do dom
-    // ver for [off e in] em type script
-    for (const user of list) {
-        playerList.push(new Player(user.name, user.points));
+        console.log("Dom fully loaded..."); // informaçao sobre o ready state do dom
+        for (const user of list) {
+            playerList.push(new Player(user.name, user.points));
+        }
+        updateLeaderboard();
     }
-    updateLeaderboard();
 }
 
 // chamar o loadStorage ao carregar o DOM
